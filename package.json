@@ -14,7 +14,6 @@
   "license": "MIT",
   "dependencies": {
     "dotenv": "^5.0.1",
-    "emma-sdk": "0.0.3",
     "puppeteer": "^1.2.0"
   }
 }
