@@ -5,7 +5,7 @@ var fs = require('fs');
 
 exports.run = async function(){
 
-    var returnError, config, claims;
+    var returnError, config, claims, mediaTypeID;
 
     fs.readFile('./app/config.json', 'utf8', function (err, data) {
         if (err) throw err;
@@ -73,21 +73,15 @@ exports.run = async function(){
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtContactPhone');
             await page.type('#ctl00_ContentPlaceHolder1_txtContactPhone', config.phone);
             
-            await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep1Next');
-            await page.click('#ctl00_ContentPlaceHolder1_btnStep1Next');
+            await page.keyboard.press('Enter');
+            // await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep1Next');
+            // await page.click('#ctl00_ContentPlaceHolder1_btnStep1Next');
             
             // Step 2
-            if(claims.data[i]['media-type'] == 'SEM'){
-                
-                await page.waitForSelector('#ctl00_ContentPlaceHolder1_rblMediatype_6');
-                await page.click('#ctl00_ContentPlaceHolder1_rblMediatype_6');
-                
-            }else if(claims.data[i]['media-type'] == 'Digital'){
-                
-                await page.waitForSelector('#ctl00_ContentPlaceHolder1_rblMediatype_1');
-                await page.click('#ctl00_ContentPlaceHolder1_rblMediatype_1');
-                
-            }
+            mediaTypeID = '#ctl00_ContentPlaceHolder1_rblMediatype_' + claims.data[i]['media-type'];
+
+            await page.waitForSelector(mediaTypeID);
+            await page.click(mediaTypeID);
 
             await helper.delay(3000);
             
@@ -106,8 +100,9 @@ exports.run = async function(){
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtPANumber');
             await page.type('#ctl00_ContentPlaceHolder1_txtPANumber', claims.data[i]['preapproval-number']);
 
-            await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep2Next');
-            await page.click('#ctl00_ContentPlaceHolder1_btnStep2Next');
+            await page.keyboard.press('Enter');
+            // await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep2Next');
+            // await page.click('#ctl00_ContentPlaceHolder1_btnStep2Next');
 
             // Step 3
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_FileUpload1');
