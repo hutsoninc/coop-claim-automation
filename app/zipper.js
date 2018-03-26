@@ -142,9 +142,7 @@ exports.run = function() {
             fs.readFile('./app/claims.json', 'utf8', function (err, data) {
 
                 if(err) console.log(err);
-    
-                console.log('data: ' + data);
-    
+        
                 resolve(JSON.parse(data));
                 
             });
