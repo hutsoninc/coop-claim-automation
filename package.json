@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "adm-zip": "^0.4.7",
+    "archiver": "^2.1.1",
     "dotenv": "^5.0.1",
     "puppeteer": "^1.2.0"
   }

@@ -5,6 +5,8 @@ var fs = require('fs');
 
 exports.run = async function(){
 
+    console.log('Starting upload.');
+
     var returnError, config, claims, mediaTypeID;
 
     fs.readFile('./app/config.json', 'utf8', function (err, data) {
@@ -108,7 +110,7 @@ exports.run = async function(){
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_FileUpload1');
             const fileSelector = await page.$("input[type=file]");
 
-            await fileSelector.uploadFile('./claim-data/' + claims.data[i]['preapproval-number'] + '/test.txt');
+            await fileSelector.uploadFile('./claim-data/zipped/' + claims.data[i]['preapproval-number'] + '.zip');
 
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnUpload');
             await page.click('#ctl00_ContentPlaceHolder1_btnUpload');
