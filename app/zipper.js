@@ -5,7 +5,7 @@ exports.run = function() {
 
     return new Promise(function(resolve, reject){
 
-        console.log('Starting zip process.')
+        console.log('Starting zip process.');
 
         var i = 0;
         

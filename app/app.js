@@ -80,7 +80,7 @@ exports.run = async function(){
             // await page.click('#ctl00_ContentPlaceHolder1_btnStep1Next');
             
             // Step 2
-            mediaTypeID = '#ctl00_ContentPlaceHolder1_rblMediatype_' + claims.data[i]['media-type'];
+            mediaTypeID = '#ctl00_ContentPlaceHolder1_rblMediatype_' + claims.data[i]['Media Type'];
 
             await page.waitForSelector(mediaTypeID);
             await page.click(mediaTypeID);
@@ -88,19 +88,19 @@ exports.run = async function(){
             await helper.delay(3000);
             
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtInvoiceAmount');
-            await page.type('#ctl00_ContentPlaceHolder1_txtInvoiceAmount', claims.data[i]['invoice-amount']);
+            await page.type('#ctl00_ContentPlaceHolder1_txtInvoiceAmount', claims.data[i]['Invoice Amount']);
             
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtMediaName');
-            await page.type('#ctl00_ContentPlaceHolder1_txtMediaName', claims.data[i]['media-name']);
+            await page.type('#ctl00_ContentPlaceHolder1_txtMediaName', claims.data[i]['Media Name']);
             
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtInvoiceNumber');
-            await page.type('#ctl00_ContentPlaceHolder1_txtInvoiceNumber', claims.data[i]['invoice-number']);
+            await page.type('#ctl00_ContentPlaceHolder1_txtInvoiceNumber', claims.data[i]['Invoice Number']);
             
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtInvoiceDate');
-            await page.type('#ctl00_ContentPlaceHolder1_txtInvoiceDate', claims.data[i]['invoice-date']);
+            await page.type('#ctl00_ContentPlaceHolder1_txtInvoiceDate', claims.data[i]['Invoice Date']);
             
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_txtPANumber');
-            await page.type('#ctl00_ContentPlaceHolder1_txtPANumber', claims.data[i]['preapproval-number']);
+            await page.type('#ctl00_ContentPlaceHolder1_txtPANumber', claims.data[i]['Preapproval Number']);
 
             await page.keyboard.press('Enter');
             // await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep2Next');
@@ -110,7 +110,7 @@ exports.run = async function(){
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_FileUpload1');
             const fileSelector = await page.$("input[type=file]");
 
-            await fileSelector.uploadFile('./claim-data/zipped/' + claims.data[i]['preapproval-number'] + '.zip');
+            await fileSelector.uploadFile('./claim-data/zipped/' + claims.data[i]['Preapproval Number'] + '.zip');
 
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnUpload');
             await page.click('#ctl00_ContentPlaceHolder1_btnUpload');
