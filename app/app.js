@@ -160,6 +160,7 @@ function processCompleted(preapprovalNumber, invoiceNumber, invoiceDate){
                 if(err) reject(err);
 
                 console.log('Logged and processed ' + preapprovalNumber);
+                resolve();
     
             });
         });
