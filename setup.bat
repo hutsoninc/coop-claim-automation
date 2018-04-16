@@ -3,7 +3,7 @@
 echo This script will create the necessary files and folders to get you started.
 echo For more information, visit https://github.com/hutsoninc/coop-claim-automation
 
-set csvHeaders=Media Type,Invoice Amount,Media Name,Invoice Number,Invoice Date,Preapproval Number
+set csvHeaders=Media Type,Invoice Amount,Media Name,Invoice Number,Invoice Date,Preapproval Number,Nested
 
 set /p yourName=Enter your first and last name: 
 set /p yourEmail=Enter your work email: 

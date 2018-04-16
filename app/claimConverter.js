@@ -13,12 +13,10 @@ exports.run = function() {
         
         csv({
             noheader: false,
-            headers: ['Media Type', 'Invoice Amount', 'Media Name', 'Invoice Number', 'Invoice Date', 'Preapproval Number']
+            headers: ['Media Type', 'Invoice Amount', 'Media Name', 'Invoice Number', 'Invoice Date', 'Preapproval Number', 'Nested']
         })
         .fromFile('./app/claims.csv')
         .on('json', (jsonObj) => {
-
-            console.log(jsonObj);
         
             output.data.push(jsonObj);
         

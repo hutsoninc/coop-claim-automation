@@ -121,8 +121,10 @@ exports.run = async function(){
             await page.click('#ctl00_ContentPlaceHolder1_btnStep3Next');
 
             // Step 4
-            // await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep4Next');
-            // await page.click('#ctl00_ContentPlaceHolder1_btnStep4Next');
+            await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep4Next');
+            await page.click('#ctl00_ContentPlaceHolder1_btnStep4Next');
+
+            processCompleted(claims.data[i]['Preapproval Number'], claims.data[i]['Invoice Number'], claims.data[i]['Invoice Date'])
 
             await helper.delay(10000);
             
@@ -140,3 +142,28 @@ exports.run = async function(){
 	await browser.close();
 	return returnError;
 };
+
+function processCompleted(preapprovalNumber, invoiceNumber, invoiceDate){
+
+    return new Promise((resolve, reject) => {
+
+        let currentDate = new Date();
+        let logOutput = currentDate.getDay() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear() + ','
+                        + preapprovalNumber + ',' + invoiceNumber + ',' + invoiceDate;
+
+        fs.unlink('./claim-data/zipped/' + preapprovalNumber + '.zip', (err) => {
+
+            if(err) reject(err);
+
+            fs.appendFile('./logs/log.csv', '\n' + logOutput, err => {
+    
+                if(err) reject(err);
+
+                console.log('Logged and processed ' + preapprovalNumber);
+    
+            });
+        });
+
+    });
+
+}
