@@ -16,7 +16,7 @@ echo Visit this webpage http://advertising.deere.com/Reporting/Dealer/DealerNumb
 
 set /p deereURL=Copy the URL and enter it here: 
 
-echo DEERE_CLAIM_URL=%deereURL%>.env
+echo DEALER_CLAIM_URL=%deereURL%>.env
 echo DEERE_USER=%deereUser%>>.env
 echo DEERE_PWD=%deerePwd%>>.env
 
