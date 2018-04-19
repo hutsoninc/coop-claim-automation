@@ -110,7 +110,15 @@ exports.run = async function(){
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_FileUpload1');
             const fileSelector = await page.$("input[type=file]");
 
-            await fileSelector.uploadFile('./claim-data/zipped/' + claims.data[i]['Preapproval Number'] + '.zip');
+            if(claims.data[i]['Nested'].toLowerCase() == "true"){
+                
+                await fileSelector.uploadFile('./claim-data/zipped/' + claims.data[i]['Preapproval Number'] + '/' + claims.data[i]['Invoice Number'] + '.zip');
+                
+            }else {
+                
+                await fileSelector.uploadFile('./claim-data/zipped/' + claims.data[i]['Preapproval Number'] + '.zip');
+
+            }
 
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnUpload');
             await page.click('#ctl00_ContentPlaceHolder1_btnUpload');
@@ -124,7 +132,15 @@ exports.run = async function(){
             await page.waitForSelector('#ctl00_ContentPlaceHolder1_btnStep4Next');
             await page.click('#ctl00_ContentPlaceHolder1_btnStep4Next');
 
-            processCompleted(claims.data[i]['Preapproval Number'], claims.data[i]['Invoice Number'], claims.data[i]['Invoice Date'])
+            if(claims.data[i]['Nested'].toLowerCase() == "true"){
+
+                processCompleted(claims.data[i]['Preapproval Number'], claims.data[i]['Invoice Number'], claims.data[i]['Invoice Date'], true);
+                
+            }else {
+                
+                processCompleted(claims.data[i]['Preapproval Number'], claims.data[i]['Invoice Number'], claims.data[i]['Invoice Date'], false);
+
+            }
 
             await helper.delay(10000);
             
@@ -143,15 +159,26 @@ exports.run = async function(){
 	return returnError;
 };
 
-function processCompleted(preapprovalNumber, invoiceNumber, invoiceDate){
+function processCompleted(preapprovalNumber, invoiceNumber, invoiceDate, nested){
 
     return new Promise((resolve, reject) => {
 
         let currentDate = new Date();
         let logOutput = currentDate.getDay() + '/' + (currentDate.getMonth() + 1) + '/' + currentDate.getFullYear() + ','
                         + preapprovalNumber + ',' + invoiceNumber + ',' + invoiceDate;
+        let fileDir = './claim-data/zipped/';
 
-        fs.unlink('./claim-data/zipped/' + preapprovalNumber + '.zip', (err) => {
+        if(nested) {
+            
+            fileDir +=  (preapprovalNumber + '/' + invoiceNumber + '.zip');
+
+        }else {
+
+            fileDir += (preapprovalNumber + '.zip');
+
+        }
+
+        fs.unlink(fileDir, (err) => {
 
             if(err) reject(err);
 
@@ -159,7 +186,7 @@ function processCompleted(preapprovalNumber, invoiceNumber, invoiceDate){
     
                 if(err) reject(err);
 
-                console.log('Logged and processed ' + preapprovalNumber);
+                console.log('Logged and processed ' + preapprovalNumber + ' #' + invoiceNumber);
                 resolve();
     
             });
