@@ -4,6 +4,7 @@ echo This script will create the necessary files and folders to get you started.
 echo For more information, visit https://github.com/hutsoninc/coop-claim-automation
 
 set csvHeaders=Media Type,Invoice Amount,Media Name,Invoice Number,Invoice Date,Preapproval Number,Nested
+set logHeaders=Date Submitted,Preapproval Number,Invoice Number,Invoice Date
 
 set /p yourName=Enter your first and last name: 
 set /p yourEmail=Enter your work email: 
@@ -15,7 +16,7 @@ echo Visit this webpage http://advertising.deere.com/Reporting/Dealer/DealerNumb
 
 set /p deereURL=Copy the URL and enter it here: 
 
-echo DEERE_CLAIM_URL=>.env
+echo DEERE_CLAIM_URL=%deereURL%>.env
 echo DEERE_USER=%deereUser%>>.env
 echo DEERE_PWD=%deerePwd%>>.env
 
@@ -36,5 +37,9 @@ echo %csvHeaders%>app\claims.csv
 echo.>app\claims.json
 
 echo Created claims.json and claims.csv files
+
+mkdir logs
+
+echo %logHeaders%>logs\log.csv
 
 set /p temp="Press enter to exit..."
