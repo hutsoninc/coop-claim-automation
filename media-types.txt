@@ -1,15 +1,13 @@
 0: Direct Mail
-1: Display Advertising (Digital Banners)
+1: Display Advertising (Digital Banners and Native Advertising)
 2: Flyers/Inserts
-3: Native Advertising
-4: Online Video (OLV, YouTube)
-5: Out of Home (Billboards)
-6: Paid Search Advertising (SEM/PPC/PLA)
-7: Paid Social (Facebook, Instagram, Pinterest, and Twitter ads; boosted posts)
-8: Point of Sale (POS) Materials
-9: Print Advertising (Newspaper and Magazine)
-10: Radio and Streaming Radio Commercials
-11: Shows and Events
-12: Sponsorships
-13: Television and Streaming TV Commercials
-14: Website Development and SEO
+3: Outdoor Media (Billboards)
+4: Paid Search Advertising (SEM/PPC/PLA)
+5: Paid Social (Facebook, Instagram, Pinterest, and Twitter ads; Boosted Posts)
+6: Point of Sale (POS) Materials
+7: Print Advertising (Newspaper and Magazine)
+8: Radio and Streaming Radio Commercials
+9: Screens (TV and Streaming TV; Online Video)
+10: Shows and Events
+11: Sponsorships
+12: Website Development and SEO
