@@ -14,7 +14,7 @@
   "license": "MIT",
   "dependencies": {
     "archiver": "^2.1.1",
-    "csvtojson": "^1.1.9",
+    "csvtojson": "^2.0.8",
     "dotenv": "^5.0.1",
     "puppeteer": "^1.2.0"
   }
